@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 17:30:30 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:52:06 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int		get_next_line(int fd, char **line)
 		blen = ft_strlen(buff);
 		if (!(*line = ft_strjoin(*line, buff)))
 			return (ft_free_tab(line));
+		printf("line in function = %s\n", *line);
 		if (ft_strchr(buff, 10))
 			return (1);
 		if (ft_strlen(buff) < BUFFER_SIZE)
 			return (0);
-		free(buff);
-		printf("line salut = %s\n", *line);
-		if (!(buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1)))
-			return (ft_free_tab(line));
+		ft_bzero(buff, BUFFER_SIZE + 1);
 	}
 	return (ft_free_tab(line));
 }
