@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 17:21:02 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 15:47:31 by gapoulai         ###   ########lyon.fr   */
+/*   Created: 2020/12/01 14:36:31 by gapoulai          #+#    #+#             */
+/*   Updated: 2020/12/01 16:01:11 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdio.h>
-# include <stddef.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
+int		main(void)
+{
+	char	*line;
+	int		file;
 
-int		get_next_line(int fd, char **line);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_realloc(void *s, size_t size);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *s);
-
-#endif
+	file = 0;
+	// file = open("textfile", O_RDONLY);
+	line = NULL;
+	while (1)
+		printf("return : %d\n%s\n\n", get_next_line(file, &line), line);
+	// close(file);
+	return (0);
+}
