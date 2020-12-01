@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:36:31 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 16:01:11 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:32:42 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int		main(void)
 	// file = open("textfile", O_RDONLY);
 	line = NULL;
 	while (1)
-		printf("return : %d\n%s\n\n", get_next_line(file, &line), line);
+	{
+		printf("return : %d\n", get_next_line(file, &line));
+		printf("line : %s\n", line);
+	}
 	// close(file);
 	return (0);
 }

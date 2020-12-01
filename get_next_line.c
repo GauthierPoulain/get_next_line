@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 16:10:18 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:30:30 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,24 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char	*ptr;
-	int		i;
+	char *ptr;
 
 	if (!(ptr = malloc(count * size)))
 		return (NULL);
-	i = count * size;
-	while (i--)
-		ptr[i] = 0;
+	ft_bzero(ptr, count * size);
 	return (ptr);
 }
 
-void	*ft_realloc(void *s, size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*new;
-	char	*old;
-	size_t	i;
+	char *casts;
 
-	old = s;
-	if (!(new = ft_calloc(size, sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (old[i] && i < size)
-	{
-		new[i] = old[i];
-		i++;
-	}
-	new[i] = 0;
-	free(s);
-	return (new);
+	casts = (char *)s;
+	while (n--)
+		*casts++ = 0;
 }
 
-int		ft_free_tab(void **tab)
+int		ft_free_tab(char **tab)
 {
 	free(*tab);
 	free(tab);
@@ -61,27 +47,21 @@ int		get_next_line(int fd, char **line)
 	if (!(buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1))
 	|| !(line = malloc(sizeof(char *)))
 	|| !(*line = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
-		return (-1);
+		return (ft_free_tab(line));
 	while (read(fd, buff, BUFFER_SIZE) > 0)
 	{
 		blen = ft_strlen(buff);
-		if (buff[blen - 1] == 10)
-			blen--;
-		if (blen == BUFFER_SIZE && buff[blen] != 10 && buff[blen])
-		{
-			/* code */
-		}
-		printf("\n%d\n", BUFFER_SIZE);
-		printf("\tbuffer = %s\n\tblen = %zu\n", buff, blen);
-
-		if (blen == ft_strlen(buff) - 1)
+		if (!(*line = ft_strjoin(*line, buff)))
+			return (ft_free_tab(line));
+		if (ft_strchr(buff, 10))
 			return (1);
 		if (ft_strlen(buff) < BUFFER_SIZE)
 			return (0);
 		free(buff);
+		printf("line salut = %s\n", *line);
 		if (!(buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1)))
-			return (-1);
+			return (ft_free_tab(line));
 	}
-	return (-1);
+	return (ft_free_tab(line));
 }
 
