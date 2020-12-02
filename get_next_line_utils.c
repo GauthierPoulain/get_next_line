@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:04 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 17:26:43 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 07:42:16 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strcat(char *dest, char *src)
 		dest[i + j] = src[j];
 		j++;
 	}
-	dest[i + j] = '\0';
+	dest[i + j] = 0;
 	return (dest);
 }
 
@@ -68,13 +68,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned long	len;
 	char			*res;
 
-	// printf("\ns1 = %s\ns2 = %s\n\n", s1, s2);
-
 	len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(res = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	ft_memcpy(res, s1, ft_strlen(s1));
 	ft_strcat(res, (char *)s2);
-	// printf("res = %s\n", res);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:36:31 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 17:41:58 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 07:40:57 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 int		main(void)
 {
-	char	*line;
+	char	**line;
 	int		file;
+	int		tmp;
 
 	file = 0;
-	// file = open("textfile", O_RDONLY);
-	line = NULL;
-	while (1)
+	file = open("textfile", O_RDONLY);
+	line = malloc(sizeof(char *));
+	printf("buffer size = %d\n", BUFFER_SIZE);
+	while ((tmp = get_next_line(file, line)))
 	{
-		printf("return : %d\n", get_next_line(file, &line));
-		printf("line : %s\n", line);
+		printf("\nreturn : %d\n", tmp);
+		printf("line : %s\n\n\n", *line);
 	}
-	// close(file);
+	close(file);
 	return (0);
 }

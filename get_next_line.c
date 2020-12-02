@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/01 17:52:06 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 07:36:40 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	ft_bzero(void *s, size_t n)
 		*casts++ = 0;
 }
 
-int		ft_free_tab(char **tab)
+int		ft_free_tab(char *tab)
 {
-	free(*tab);
 	free(tab);
 	return (-1);
 }
@@ -42,24 +41,23 @@ int		get_next_line(int fd, char **line)
 {
 	char	*buff;
 	size_t	blen;
+	char	*tmp;
 
 	buff = NULL;
 	if (!(buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1))
-	|| !(line = malloc(sizeof(char *)))
-	|| !(*line = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
-		return (ft_free_tab(line));
+	|| !(tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+		return (ft_free_tab(*line));
 	while (read(fd, buff, BUFFER_SIZE) > 0)
 	{
 		blen = ft_strlen(buff);
-		if (!(*line = ft_strjoin(*line, buff)))
-			return (ft_free_tab(line));
-		printf("line in function = %s\n", *line);
+		if (!(tmp = ft_strjoin(tmp, buff)))
+			return (ft_free_tab(*line));
+		*line = tmp;
 		if (ft_strchr(buff, 10))
 			return (1);
 		if (ft_strlen(buff) < BUFFER_SIZE)
 			return (0);
 		ft_bzero(buff, BUFFER_SIZE + 1);
 	}
-	return (ft_free_tab(line));
+	return (ft_free_tab(*line));
 }
-
