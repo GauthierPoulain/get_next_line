@@ -1,8 +1,9 @@
+BUFFER_SIZE = 12
 
 all:
 	clear
 	@echo "compil : "
-	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 main.c get_next_line.c get_next_line_utils.c
+	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=$(BUFFER_SIZE) main.c get_next_line.c get_next_line_utils.c
 	@echo "done"
 	@echo "exec :"
 	./a.out
@@ -10,7 +11,7 @@ all:
 debug:
 	clear
 	@echo "compil : "
-	gcc -g -Wall -Wextra -Werror -D BUFFER_SIZE=32 main.c get_next_line.c get_next_line_utils.c
+	gcc -g -Wall -Wextra -Werror -D BUFFER_SIZE=$(BUFFER_SIZE) main.c get_next_line.c get_next_line_utils.c
 	@echo "done"
 	@echo "debug :"
 	lldb ./a.out
