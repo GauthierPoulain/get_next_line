@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 12:02:50 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 14:50:40 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ int			get_line(char *str, char **line, int i)
 {
 	int		len;
 
-	*line = ft_substr(str, 0, i);
+	if (!(*line = ft_substr(str, 0, i)))
+		return (-1);
 	++i;
 	len = ft_strlen(str + i) + 1;
-	ft_memmove(str, str + i, len);
+	if (!(ft_memmove(str, str + i, len)))
+		return (-1);
 	return (1);
 }
 
@@ -61,8 +63,8 @@ int			get_next_line(int fd, char **line)
 	int			return_val;
 	int			i;
 
-	if (!line || fd < 0 || BUFFER_SIZE < 1
-	|| !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+	if (!line || fd < 0 || BUFFER_SIZE < 1 ||
+	!(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 		return (-1);
 	if (save[fd] && (((i = get_index(save[fd], 10)) != -1)))
 		return (get_line(save[fd], line, i));
@@ -70,15 +72,14 @@ int			get_next_line(int fd, char **line)
 	{
 		buff[return_val] = 0;
 		save[fd] = ft_strjoin(save[fd], buff);
+		free(buff);
+		if (!save[fd] || !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+			return (-1);
 		if (((i = get_index(save[fd], 10)) != -1))
 			return (get_line(save[fd], line, i));
 	}
-	if (save[fd] && (*line = ft_strdup(save[fd])))
-	{
-		free(save[fd]);
-		save[fd] = NULL;
-	}
-	else if (return_val != -1)
-		*line = ft_strdup("");
+	if (!save[fd] || !(*line = ft_strdup(save[fd])))
+		if (return_val != -1 && (!save[fd] && !(*line = ft_strdup(""))))
+			return (-1);
 	return (return_val);
 }
