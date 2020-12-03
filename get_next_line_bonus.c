@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 10:42:21 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 12:03:44 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int			get_line(char *str, char **line, int i)
 
 int			get_next_line(int fd, char **line)
 {
-	static char *save[10240];
+	static char	*save[10240];
 	char		*buff;
 	int			return_val;
 	int			i;
 
 	if (!line || fd < 0 || BUFFER_SIZE < 1
-	|| !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+		|| !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 		return (-1);
 	if (save[fd] && (((i = get_index(save[fd], 10)) != -1)))
 		return (get_line(save[fd], line, i));
@@ -73,12 +73,12 @@ int			get_next_line(int fd, char **line)
 		if (((i = get_index(save[fd], 10)) != -1))
 			return (get_line(save[fd], line, i));
 	}
-	if (save[fd])
+	if (save[fd] && (*line = ft_strdup(save[fd])))
 	{
-		*line = ft_strdup(save[fd]);
 		free(save[fd]);
+		save[fd] = NULL;
 	}
-	else
+	else if (return_val != -1)
 		*line = ft_strdup("");
 	return (return_val);
 }

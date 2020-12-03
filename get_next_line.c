@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 11:01:58 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 12:02:50 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			get_next_line(int fd, char **line)
 		free(save[fd]);
 		save[fd] = NULL;
 	}
-	else
+	else if (return_val != -1)
 		*line = ft_strdup("");
 	return (return_val);
 }

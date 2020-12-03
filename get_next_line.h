@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:02 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 09:56:26 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 11:44:42 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ typedef struct	s_save
 	struct s_save	*next;
 }				t_save;
 
-int			get_next_line(int fd, char **line);
-char		*ft_strjoin(char *s1, char *s2);
-int			find_index(const char *s, int c);
-int			get_line(char *str, char **line, int i);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		*ft_memmove(void *dst, const void *src, size_t len);
-char		*ft_strdup(const char *s1);
-size_t		ft_strlen(const char *s);
-void		*ft_calloc(size_t count, size_t size);
+int				get_next_line(int fd, char **line);
+char			*ft_strjoin(char *s1, char *s2);
+int				find_index(const char *s, int c);
+int				get_line(char *str, char **line, int i);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+void			*ft_memmove(void *dst, const void *src, size_t len);
+char			*ft_strdup(const char *s1);
+size_t			ft_strlen(const char *s);
+void			*ft_calloc(size_t count, size_t size);
 
 #endif
