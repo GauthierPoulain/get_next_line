@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 14:50:40 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 15:04:13 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ int			get_next_line(int fd, char **line)
 		buff[return_val] = 0;
 		save[fd] = ft_strjoin(save[fd], buff);
 		free(buff);
-		if (!save[fd] || !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
-			return (-1);
+		if (ft_strlen(buff) != BUFFER_SIZE)
+			if (!save[fd] || !(buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+				return (-1);
 		if (((i = get_index(save[fd], 10)) != -1))
 			return (get_line(save[fd], line, i));
 	}
