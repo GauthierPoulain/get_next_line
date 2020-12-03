@@ -1,4 +1,4 @@
-BUFFER_SIZE = 12
+BUFFER_SIZE = 1
 
 all:
 	clear

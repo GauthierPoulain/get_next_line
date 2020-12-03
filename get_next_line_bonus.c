@@ -6,7 +6,7 @@
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:21:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/03 11:01:58 by gapoulai         ###   ########lyon.fr   */
+/*   Updated: 2020/12/03 10:42:21 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int			get_next_line(int fd, char **line)
 		if (((i = get_index(save[fd], 10)) != -1))
 			return (get_line(save[fd], line, i));
 	}
-	if (save[fd] && (*line = ft_strdup(save[fd])))
+	if (save[fd])
 	{
+		*line = ft_strdup(save[fd]);
 		free(save[fd]);
-		save[fd] = NULL;
 	}
 	else
 		*line = ft_strdup("");
