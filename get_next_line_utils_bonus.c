@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 17:21:02 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/06 00:41:44 by gapoulai         ###   ########lyon.fr   */
+/*   Created: 2020/12/06 00:48:53 by gapoulai          #+#    #+#             */
+/*   Updated: 2020/12/06 00:48:55 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-int			get_next_line(int fd, char **line);
-size_t		ft_strlen(const char *s);
-int			ft_strchr(const char *s, int c);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
 
-#endif
+int		ft_strchr(const char *s, int c)
+{
+	int		i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	if (c == 0)
+		return (1);
+	return (0);
+}
