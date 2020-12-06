@@ -5,56 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 00:49:05 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/06 00:49:07 by gapoulai         ###   ########lyon.fr   */
+/*   Created: 2020/12/06 02:42:20 by gapoulai          #+#    #+#             */
+/*   Updated: 2020/12/06 02:42:35 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	int			i;
-	char		*bdst;
-	const char	*bsrc;
-
-	if (!dst && !src)
-		return (NULL);
-	i = 0;
-	bsrc = src;
-	bdst = dst;
-	if (src > dst)
-	{
-		while ((unsigned long)i < len)
-		{
-			bdst[i] = bsrc[i];
-			i++;
-		}
-	}
-	else
-		while (len--)
-			bdst[len] = bsrc[len];
-	return (dst);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	lens1;
-	size_t	lens2;
-	char	*res;
-
-	if (!s1 && !s2)
-		return (NULL);
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	if (!(res = malloc(sizeof(char) * (lens1 + lens2 + 1))))
-		return (NULL);
-	ft_memmove(res, s1, lens1);
-	ft_memmove(res + lens1, s2, lens2);
-	res[lens1 + lens2] = 0;
-	free(s1);
-	return (res);
-}
+#include "get_next_line_bonus.h"
 
 char	*fetch_line(char *str)
 {
@@ -63,11 +19,11 @@ char	*fetch_line(char *str)
 
 	i = 0;
 	if (!str)
-		return (0);
+		return (NULL);
 	while (str[i] && str[i] != 10)
 		i++;
 	if (!(res = malloc(sizeof(char) * (i + 1))))
-		return (0);
+		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != 10)
 	{
@@ -87,16 +43,16 @@ char	*fetch_save(char *save)
 	i = 0;
 	j = 0;
 	if (!save)
-		return (0);
+		return (NULL);
 	while (save[i] && save[i] != 10)
 		i++;
 	if (!save[i])
 	{
 		free(save);
-		return (0);
+		return (NULL);
 	}
 	if (!(res = malloc(sizeof(char) * ((ft_strlen(save) - i) + 1))))
-		return (0);
+		return (NULL);
 	i++;
 	while (save[i])
 		res[j++] = save[i++];

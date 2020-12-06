@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gapoulai <gapoulai@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 00:49:00 by gapoulai          #+#    #+#             */
-/*   Updated: 2020/12/06 00:49:43 by gapoulai         ###   ########lyon.fr   */
+/*   Created: 2020/12/06 02:41:59 by gapoulai          #+#    #+#             */
+/*   Updated: 2020/12/06 02:42:15 by gapoulai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <unistd.h>
 
 int			get_next_line(int fd, char **line);
-size_t		ft_strlen(const char *s);
+void		*ft_memmove(void *dst, const void *src, size_t len);
 int			ft_strchr(const char *s, int c);
+char		*ft_strjoin(char *s1, char *s2);
+size_t		ft_strlen(const char *s);
 
 #endif
